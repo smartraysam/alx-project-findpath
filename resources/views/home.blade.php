@@ -19,6 +19,24 @@
             color: #fff; /* Change the text color */
             font-size: 24px;
         }
+        .animate-bounce {
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-20px);
+            }
+
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
         @keyframes dot-animation {
             0% {
                 opacity: 0;
@@ -49,11 +67,7 @@
     <div class="flex items-center justify-center min-h-screen splash-screen">
         <!-- Your splash screen content goes here -->
         <div class="text-center">
-            <img src="{{ asset('/assets/img/path.jpg') }}" alt="App Logo" style="margin: auto" class="mb-6 h-16 w-16">
-            <h1 class="text-4xl font-bold">FindPath</h1>
-            <p style="font-style: italic; font-size: 16px">
-                Loading<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
-            </p>
+            
         </div>
     </div>
 </body>
