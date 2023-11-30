@@ -121,14 +121,14 @@
         <div class="text-center">
             <div class="mb-8">
                 {{-- <span>From</span> --}}
-                <input type="text" placeholder="Where are you? ie toll gate"
+                <input type="text" placeholder="Where are you? ie Toll gate"
                     class="w-72 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                     style="font-size: 1.1rem; padding-left: 30px; margin-right:-30px">
                 <i class="fa fa-search" style="position:relative; left:-260px"></i>
             </div>
             <div class="mb-8">
                 {{-- <span>To</span> --}}
-                <input type="text" placeholder="Where are you going?"
+                <input type="text" placeholder="Where are you going? ie Apata"
                     class="w-72 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                     style="font-size: 1.1rem;  padding-left: 30px; margin-right:-30px">
                 <i class="fa fa-search" style="position:relative; left:-260px"></i>
