@@ -134,7 +134,7 @@
                 <i class="fa fa-search" style="position:relative; left:-260px"></i>
             </div>
 
-            <button class="bg-blue-500 text-white px-4 py-2 rounded-md" style="font-size: 1.1rem; width:250px">RouteMe</button>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-md" style="font-size: 1.1rem; width:250px">Route Me</button>
 
             <div class="loading-container" style="margin-top:150px">
                 <span class="loading-text">Loading...</span>
