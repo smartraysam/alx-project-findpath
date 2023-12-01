@@ -10,28 +10,35 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('/assets/css/tailwindcssv3.css') }}">
 
+    @vite('resources/css/app.css')
     <style>
         /* Customize the splash screen styles here */
         .splash-screen {
-            background-color: #3490dc; /* Change the background color */
-            color: #fff; /* Change the text color */
+            background-color: #3490dc;
+            /* Change the background color */
+            color: #fff;
+            /* Change the text color */
             font-size: 24px;
         }
+
         @keyframes dot-animation {
             0% {
                 opacity: 0;
             }
+
             25% {
                 opacity: 1;
             }
+
             50% {
                 opacity: 0;
             }
+
             75% {
                 opacity: 1;
             }
+
             100% {
                 opacity: 0;
             }
@@ -41,6 +48,7 @@
             display: inline-block;
             animation: dot-animation 1.5s infinite;
         }
+
         /* Customize any other styles as needed */
     </style>
 </head>
@@ -56,12 +64,15 @@
             </p>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj+KsslFkCOt3TvJrX2AV/Gc3wOqA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js"
+        integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj+KsslFkCOt3TvJrX2AV/Gc3wOqA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         // Redirect to a new route after 4 seconds
-        setTimeout(function () {
-            window.location.href = `{{route("start")}}`; // Replace '/new-route' with your actual route
+        setTimeout(function() {
+            window.location.href = `{{ route('start') }}`; // Replace '/new-route' with your actual route
         }, 4000);
     </script>
 </body>
+
 </html>
