@@ -111,6 +111,29 @@
             animation: loading 3s linear infinite;
         }
 
+        @keyframes dot-animation {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            75% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .dot {
+            display: inline-block;
+            animation: dot-animation 1.5s infinite;
+        }
+
         /* Customize any other styles as needed */
     </style>
 </head>
@@ -137,7 +160,7 @@
             <button class="bg-blue-500 text-white px-4 py-2 rounded-md" style="font-size: 1.1rem; width:250px">Route Me</button>
 
             <div class="loading-container" style="margin-top:150px">
-                <span class="loading-text">Loading...</span>
+                <span class="loading-text">Loading<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></span>
                 <div class="loading-bar">
                     <div class="loading-bar-inner"></div>
                 </div>
