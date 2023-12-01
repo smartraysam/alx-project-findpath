@@ -34,6 +34,17 @@ class RouteController extends Controller
     }
 
     /**
+     * creeate route from users location
+     */
+    public function route(Request $request)
+    {
+        return response()->json([
+            'message' => 'Route created successfully',
+            'data' => $request->all()
+        ], 201);
+    }
+
+    /**
      * Display the specified resource.
      */
     public function show(string $id)
