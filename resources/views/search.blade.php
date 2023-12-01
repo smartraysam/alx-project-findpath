@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>FindPath</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
@@ -84,7 +84,7 @@
 
         .loading-container {
             display: flex;
-            flex-direction: column; 
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             margin: 20px;
@@ -108,7 +108,7 @@
             width: 0%;
             height: 100%;
             background-color: rgb(59 130 246);
-            animation: loading 3s linear infinite;
+            animation: loading 1s linear infinite;
         }
 
         /* Customize any other styles as needed */
@@ -121,22 +121,23 @@
         <div class="text-center">
             <div class="mb-8">
                 {{-- <span>From</span> --}}
-                <input type="text" placeholder="Where are you? ie Toll gate"
+                <input id="from" type="text" placeholder="Where are you? ie Toll gate"
                     class="w-72 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                     style="font-size: 1.1rem; padding-left: 30px; margin-right:-30px">
                 <i class="fa fa-search" style="position:relative; left:-260px"></i>
             </div>
             <div class="mb-8">
                 {{-- <span>To</span> --}}
-                <input type="text" placeholder="Where are you going? ie Apata"
+                <input id="to" type="text" placeholder="Where are you going? ie Apata"
                     class="w-72 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                     style="font-size: 1.1rem;  padding-left: 30px; margin-right:-30px">
                 <i class="fa fa-search" style="position:relative; left:-260px"></i>
             </div>
 
-            <button class="bg-blue-500 text-white px-4 py-2 rounded-md" style="font-size: 1.1rem; width:250px">Route Me</button>
+            <button id="ok-button" class="bg-blue-500 text-white px-4 py-2 rounded-md"
+                style="font-size: 1.1rem; width:250px">Route Me</button>
 
-            <div class="loading-container" style="margin-top:150px">
+            <div class="loading-container" style="margin-top:150px; display:none">
                 <span class="loading-text">Loading...</span>
                 <div class="loading-bar">
                     <div class="loading-bar-inner"></div>
@@ -145,7 +146,35 @@
 
         </div>
     </div>
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#ok-button').on('click', function(e) {
+                console.log('clicked');
+                $('.loading-container').show(); /* Show the loading bar and text using jQuery */
+                var from = $('#from').val();
+                var to = $('#to').val();
+
+                $.ajax({
+                    url: 'api/user/route', // Replace '/your-api-endpoint' with your actual API endpoint
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        from: from,
+                        to: to
+                    }),
+                    success: function(data) {
+                        $('.loading-container').hide();                      
+                        // window.location.href = `{{ route('search') }}`;
+                    },
+                    error: function(error) {
+                        console.error('There was a problem with the AJAX request:', error);
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>
