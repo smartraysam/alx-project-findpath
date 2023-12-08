@@ -29,15 +29,21 @@
             font-weight: bold;
         }
 
+        #map {
+            height: 100%;
+            width: 100%;
+            position: absolute !important;
+        }
+
         /* Customize any other styles as needed */
     </style>
 </head>
 
 <body class="antialiased">
-    <div class="navbar" style="position: relative;">
+    <div class="navbar">
         <a onclick="goBack()" class="text-lg"> <i class="fa fa-arrow-left"></i></a>
     </div>
-    <div class="flex items-top justify-center min-h-screen" style="padding-top: 30px">
+    <div class="items-top justify-center min-h-screen">
         <div class="text-center">
             <div id="map"></div>
         </div>
@@ -58,8 +64,8 @@
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: {
-                    lat: -34.397,
-                    lng: 150.644
+                    lat: 7.376736,
+                    lng: 3.939786
                 },
                 zoom: 8
             });
@@ -78,6 +84,9 @@
                 position: latLng,
                 draggable: true
             });
+
+            map.setCenter(marker);
+            map.setZoom(12);
 
             // add listener to redraw the polyline when markers position change
             marker.addListener('position_changed', function() {
@@ -112,7 +121,7 @@
     </script>
 
     <script async defe
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCloYAnUkBs6ASTgnuhnYkRwipU92y7vhw&callback=initMap" r>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHpSFafpkDUWTgk0tWXZXqTAISMOHoCEs&callback=initMap" r>
     </script>
 </body>
 
