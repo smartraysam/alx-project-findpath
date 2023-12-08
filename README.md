@@ -1,4 +1,12 @@
+<div align="center">
+
+![Alt text](public/assets/logo.svg)
+
 # FindPath Project
+
+</div>
+
+
 **An ALX Profolio project**
 
 Welcome to the FindPath project! FindPath is a navigation application designed to simplify your journeys, providing efficient routes and local exploration. This repository contains the source code and development setup instructions for local deployment.
@@ -60,7 +68,11 @@ Welcome to the FindPath project! FindPath is a navigation application designed t
 
 2. **Clone the Repository:**
    ```bash
+<<<<<<< HEAD
    git clone https://github.com/your-username/findpath.git
+=======
+   git clone https://github.com/smartraysam/findpath.git
+>>>>>>> dev
    ```
 
 3. **Navigate to Project:**
@@ -87,5 +99,7 @@ Welcome to the FindPath project! FindPath is a navigation application designed t
 ## Contributing
 
 We welcome contributions to enhance FindPath. Please follow our [Contribution Guidelines](CONTRIBUTING.md) for more details.
+
+🌐 Explore More: [Visit our Profile Landing Page](https://smartraysam.github.io/findpath)
 
 Happy coding! 🚀
