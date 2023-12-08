@@ -14,7 +14,7 @@
     <style>
         /* Customize the splash screen styles here */
         .splash-screen {
-            background-color: #ffffff;
+            background-color: #f1efef92;
             font-size: 24px;
         }
 

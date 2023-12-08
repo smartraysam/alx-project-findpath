@@ -17,7 +17,7 @@
     <style>
         /* Customize the splash screen styles here */
         .splash-screen {
-            background-color: #ffffff;
+            background-color: #f1efef92;
             font-size: 24px;
         }
 
@@ -114,15 +114,19 @@
             0% {
                 opacity: 0;
             }
+
             25% {
                 opacity: 1;
             }
+
             50% {
                 opacity: 0;
             }
+
             75% {
                 opacity: 1;
             }
+
             100% {
                 opacity: 0;
             }
@@ -133,11 +137,28 @@
             animation: dot-animation 1.5s infinite;
         }
 
+        .navbar {
+            background-color: #3490dc;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
         /* Customize any other styles as needed */
     </style>
 </head>
 
 <body class="antialiased">
+    <div class="navbar">
+        <a onclick="goBack()" class="text-lg"> <i class="fa fa-arrow-left"></i></a>
+    </div>
     <div class="flex items-top justify-center min-h-screen splash-screen" style="padding-top: 30px">
         <!-- Your splash screen content goes here -->
         <div class="text-center">
@@ -158,18 +179,25 @@
 
             <button id="ok-button" class="bg-blue-500 text-white px-4 py-2 rounded-md"
                 style="font-size: 1.1rem; width:250px">Route Me</button>
-              
+
             <div class="loading-container" style="margin-top:150px; display:none">
-                <span class="loading-text">Loading<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></span>
+                <span class="loading-text">Loading<span class="dot">.</span><span class="dot">.</span><span
+                        class="dot">.</span></span>
                 <div class="loading-bar">
                     <div class="loading-bar-inner"></div>
                 </div>
+            </div>
+            <div class="noroute" style="margin-top:150px; display:none">
+                <span class="loading-text">Location route not found</span>
             </div>
 
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
+        function goBack() {
+            window.history.back();
+        }
         $(document).ready(function() {
             $('#ok-button').on('click', function(e) {
                 console.log('clicked');
@@ -186,11 +214,12 @@
                         to: to
                     }),
                     success: function(data) {
-                        $('.loading-container').hide();                      
-                        // window.location.href = `{{ route('search') }}`;
+                        $('.loading-container').hide();
+                        window.location.href = `{{ route('map') }}`;
                     },
                     error: function(error) {
                         console.error('There was a problem with the AJAX request:', error);
+                        $('.noroute').hide();
                     }
                 });
             });
