@@ -68,11 +68,7 @@ Welcome to the FindPath project! FindPath is a navigation application designed t
 
 2. **Clone the Repository:**
    ```bash
-<<<<<<< HEAD
-   git clone https://github.com/your-username/findpath.git
-=======
    git clone https://github.com/smartraysam/findpath.git
->>>>>>> dev
    ```
 
 3. **Navigate to Project:**

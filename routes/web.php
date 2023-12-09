@@ -24,7 +24,3 @@ Route::get('/start', function () {
 Route::get('/search', function () {
     return view('search');
 })->name('search');
-
-Route::get('/map', function () {
-    return view('map');
-})->name('map');

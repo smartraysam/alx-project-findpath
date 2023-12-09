@@ -8,6 +8,7 @@
     <title>FindPath</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Fonts -->
+    <link rel="icon" href="{{asset('assets/logo.svg')}}">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     @vite('resources/css/app.css')
