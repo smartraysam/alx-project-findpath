@@ -170,7 +170,7 @@
     </div>
     <div class="items-top justify-center min-h-screen splash-screen">
         <!-- Your splash screen content goes here -->
-        <div class="text-center searchview mt-4">
+        <div class="text-center searchview pt-4">
             <div class="mb-8">
                 {{-- <span>From</span> --}}
                 <input id="from" type="text" placeholder="Where are you? ie Toll gate"
