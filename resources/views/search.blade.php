@@ -274,7 +274,8 @@
                 var mapOptions = {
                     center: new google.maps.LatLng(markers[0].latitude, markers[0].longitude),
                     zoom: 15,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    disableDefaultUI: true,
                 };
                 var map = new google.maps.Map(document.getElementById("map"), mapOptions);
                 var infoWindow = new google.maps.InfoWindow();
