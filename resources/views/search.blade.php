@@ -16,6 +16,7 @@
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config('services.map.key') }}&callback=initMap">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite('resources/css/app.css')
     <style>
         /* Customize the splash screen styles here */
@@ -175,14 +176,14 @@
                 {{-- <span>From</span> --}}
                 <input id="from" type="text" placeholder="Where are you? ie Toll gate"
                     class="w-72 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
-                    style="font-size: 1.1rem; padding-left: 30px; margin-right:-30px">
+                    style="font-size: 1.1rem; padding-left: 30px; margin-right:-30px" required>
                 <i class="fa fa-search" style="position:relative; left:-260px"></i>
             </div>
             <div class="mb-8">
                 {{-- <span>To</span> --}}
                 <input id="to" type="text" placeholder="Where are you going? ie Apata"
                     class="w-72 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
-                    style="font-size: 1.1rem;  padding-left: 30px; margin-right:-30px">
+                    style="font-size: 1.1rem;  padding-left: 30px; margin-right:-30px" required>
                 <i class="fa fa-search" style="position:relative; left:-260px"></i>
             </div>
 
@@ -247,96 +248,183 @@
             $('.noroute').hide();
         }
 
-        function initMap() {
-            var markers = [{
-                    "name": 'Toll gate',
-                    "latitude": '7.38514',
-                    "longitude": '3.92983',
-                    "description": 'Coming from Lagos , first know landmark is Toll gate Ibadan',
-                    "tFare": 'Cost: ₦100'
-                },
-                {
-                    "name": 'Challenge',
-                    "latitude": '7.389353',
-                    "longitude": '3.878142',
-                    "description": 'Challenge is a known landmark in Ibadan',
-                    "tFare": 'Cost: ₦100'
-                },
-                {
-                    "name": 'Mobil',
-                    "latitude": '7.3667024',
-                    "longitude": '3.8579802',
-                    "description": 'Mobil Ring Road, MKO Abiola Way, Oluyole, Ibadan 200273, Oyo',
-                    "tFare": 'Cost: ₦100 '
-                }
-            ];
-            window.onload = function() {
+
+        var markers = [{
+                "name": 'Toll gate',
+                "latitude": '7.38514',
+                "longitude": '3.92983',
+                "description": 'Coming from Lagos , first know landmark is Toll gate Ibadan',
+                "tFare": 'Cost: ₦100'
+            },
+            {
+                "name": 'Challenge',
+                "latitude": '7.389353',
+                "longitude": '3.878142',
+                "description": 'Challenge is a known landmark in Ibadan',
+                "tFare": 'Cost: ₦100'
+            },
+            {
+                "name": 'Mobil',
+                "latitude": '7.3667024',
+                "longitude": '3.8579802',
+                "description": 'Mobil Ring Road, MKO Abiola Way, Oluyole, Ibadan 200273, Oyo',
+                "tFare": 'Cost: ₦100 '
+            }
+        ];
+
+        const success = (position) => {
+            console.log(position);
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+            var newMarker = {
+                "name": 'Current Location',
+                "latitude": lat.toString(),
+                "longitude": lng.toString(),
+                "description": 'Your current location',
+            }
+
+            // Insert the new marker at the beginning of the markers array
+            var isDuplicate = markers.some(marker => marker.latitude === lat.toString() && marker.longitude === lng.toString());
+            if (!isDuplicate){
+                markers.unshift(newMarker); 
+            }
+        }
+        const successCallback = (position) => {
+            // latitude: 7.4022912, longitude: 3.9026688,
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+            var lastmker = markers[markers.length - 1];
+            if (lat == lastmker.latitude && lng == lastmker.longitude) {
                 var mapOptions = {
-                    center: new google.maps.LatLng(markers[0].latitude, markers[0].longitude),
+                    center: new google.maps.LatLng(lat, lng),
                     zoom: 15,
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
                     disableDefaultUI: true,
                 };
                 var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                var myLatlng = new google.maps.LatLng(lat, lng);
                 var infoWindow = new google.maps.InfoWindow();
-                var lat_lng = new Array();
-                var latlngbounds = new google.maps.LatLngBounds();
-                for (i = (markers.length) - 1; i >= 0; i--) {
-                    var data = markers[i]
-                    var myLatlng = new google.maps.LatLng(data.latitude, data.longitude);
-                    lat_lng.push(myLatlng);
-                    var marker = new google.maps.Marker({
-                        position: myLatlng,
-                        map: map,
-                        title: data.name
-                    });
-                    infoWindow.setContent("You'r here at" + "<br>" + data.name);
-                    infoWindow.open(map, marker);
-                    // console.log(i)
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map
+                });
 
-                    latlngbounds.extend(marker.position);
-                    (function(marker, data) {
-                        google.maps.event.addListener(marker, "click", function(e) {
-                            infoWindow.setContent(data.tFare + "<br>" + data.description);
-                            infoWindow.open(map, marker);
-                        });
-                    })(marker, data);
-                }
-                map.setCenter(latlngbounds.getCenter());
-                map.fitBounds(latlngbounds);
+                infoWindow.setContent("You'r here at your destination");
+                infoWindow.open(map, marker);
 
-                //***********ROUTING****************//
-
-
-                //Initialize the Direction Service
-                var service = new google.maps.DirectionsService();
-                for (var i = 0; i < lat_lng.length; i++) {
-                    if ((i + 1) < lat_lng.length) {
-                        var src = lat_lng[i];
-                        var des = lat_lng[i + 1];
-                        // path.push(src);
-
-                        service.route({
-                            origin: src,
-                            destination: des,
-                            travelMode: google.maps.DirectionsTravelMode.WALKING
-                        }, function(result, status) {
-                            if (status == google.maps.DirectionsStatus.OK) {
-
-                                //Initialize the Path Array
-                                var path = new google.maps.MVCArray();
-                                //Set the Path Stroke Color
-                                var poly = new google.maps.Polyline({
-                                    map: map,
-                                    strokeColor: '#4986E7'
-                                });
-                                poly.setPath(path);
-                                for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
-                                    path.push(result.routes[0].overview_path[i]);
-                                }
-                            }
-                        });
+                Swal.fire({
+                    title: 'You have arrived at your destination',
+                    text: "Do you want to end your journey?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3490dc',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, end journey!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Journey ended!',
+                            'You have successfully ended your journey.',
+                            'success'
+                        )
+                        $('.searchview').show();
+                        $('.mapview').hide();
+                        $('.routename').html("");
+                        $('.noroute').hide();
                     }
+                })
+
+            }
+        };
+
+        const errorCallback = (error) => {
+            console.log(error);
+        };
+
+        let geolocationID;
+
+
+        function initMap() {
+
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    success,
+                    errorCallback
+                );
+                // Access the API
+                geolocationID = navigator.geolocation.watchPosition(
+                    successCallback,
+                    errorCallback
+                );
+            } else {
+                // Use a third-party geolocation service
+                console.log("Browser does not support the Geolocation API");
+            }
+
+            var mapOptions = {
+                center: new google.maps.LatLng(markers[0].latitude, markers[0].longitude),
+                zoom: 15,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                disableDefaultUI: true,
+            };
+            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+            var infoWindow = new google.maps.InfoWindow();
+            var lat_lng = new Array();
+            var latlngbounds = new google.maps.LatLngBounds();
+
+            for (i = (markers.length) - 1; i >= 0; i--) {
+                var data = markers[i]
+                var myLatlng = new google.maps.LatLng(data.latitude, data.longitude);
+                lat_lng.push(myLatlng);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: data.name
+                });
+                infoWindow.setContent("You'r here at" + "<br>" + data.name);
+                infoWindow.open(map, marker);
+                // console.log(i)
+
+                latlngbounds.extend(marker.position);
+                (function(marker, data) {
+                    google.maps.event.addListener(marker, "click", function(e) {
+                        infoWindow.setContent(data.tFare + "<br>" + data.description);
+                        infoWindow.open(map, marker);
+                    });
+                })(marker, data);
+            }
+            map.setCenter(latlngbounds.getCenter());
+            map.fitBounds(latlngbounds);
+
+            //***********ROUTING****************//
+            //Initialize the Direction Service
+            var service = new google.maps.DirectionsService();
+            for (var i = 0; i < lat_lng.length; i++) {
+                if ((i + 1) < lat_lng.length) {
+                    var src = lat_lng[i];
+                    var des = lat_lng[i + 1];
+                    // path.push(src);
+
+                    service.route({
+                        origin: src,
+                        destination: des,
+                        travelMode: google.maps.DirectionsTravelMode.WALKING
+                    }, function(result, status) {
+                        if (status == google.maps.DirectionsStatus.OK) {
+
+                            //Initialize the Path Array
+                            var path = new google.maps.MVCArray();
+                            //Set the Path Stroke Color
+                            var poly = new google.maps.Polyline({
+                                map: map,
+                                strokeColor: '#4986E7'
+                            });
+                            poly.setPath(path);
+                            for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
+                                path.push(result.routes[0].overview_path[i]);
+                            }
+                        }
+                    });
                 }
             }
         }
