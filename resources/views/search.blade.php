@@ -290,6 +290,8 @@
                 (position) => {
                     var lat = position.coords.latitude;
                     var lng = position.coords.longitude;
+                    console.log("Current location: " + position.coords.latitude + ", " + position.coords
+                        .longitude);
                     if (markers.length > 1) {
                         var lastmker = markers[markers.length - 1];
                         if (lat == lastmker.latitude && lng == lastmker.longitude) {
