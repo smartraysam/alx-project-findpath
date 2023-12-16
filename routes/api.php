@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RouteController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/user/save', [App\Http\Controllers\RouteController::class, 'store']);
 Route::post('/user/route', [App\Http\Controllers\RouteController::class, 'route']);
+Route::get('/landmarks/{from}/{to}', [RouteController::class, 'getLandmarksBetween']);

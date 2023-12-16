@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\LandmarkResource;
+use App\Models\Landmarks;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
@@ -47,10 +49,37 @@ class RouteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+  
+    public function getLandmarksBetween($from, $to)
     {
-        //
+        $from = strtolower($from);
+        $to = strtolower($to);
+        // Find the landmark with the given 'from' value
+        $path = [$from];
+
+        while ($from !== $to) {
+            $landmark = Landmarks::where('name', $from)->first();
+
+            if (!$landmark) {
+                return response()->json(['error' => 'Landmark not found'], 404);
+            }
+
+            $from = $landmark->routes;
+            $path[] = $from;
+        }
+
+        // Fetch the details of landmarks in the path
+        $landmarks = Landmarks::whereIn('name', $path)->get();
+
+        // Transform the data into the desired format using a resource
+        $landmarkResource = LandmarkResource::collection($landmarks);
+
+        return response()->json($landmarkResource);
+
+        // Return an error message if 'from' or 'to' landmarks are not found
+        return response()->json(['error' => 'Invalid landmarks or route not found'], 404);
     }
+
 
     /**
      * Show the form for editing the specified resource.
