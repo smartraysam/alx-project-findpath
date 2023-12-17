@@ -178,14 +178,14 @@
                 <input id="from" type="text" placeholder="Where are you? ie Toll gate"
                     class="w-72 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                     style="font-size: 1.1rem; padding-left: 30px; margin-right:-30px" required>
-                <i class="fa fa-search" style="position:relative; left:-260px"></i>
+              
             </div>
             <div class="mb-8">
                 {{-- <span>To</span> --}}
                 <input id="to" type="text" placeholder="Where are you going? ie Apata"
                     class="w-72 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                     style="font-size: 1.1rem;  padding-left: 30px; margin-right:-30px" required>
-                <i class="fa fa-search" style="position:relative; left:-260px"></i>
+            
             </div>
 
             <button id="ok-button" class="bg-blue-500 text-white px-4 py-2 rounded-md"
@@ -347,12 +347,18 @@
                 url: `api/landmarks/${from}/${to}`,
                 type: 'GET',
                 contentType: 'application/json',
-                success: function(data) {
-
+                success: function(response) {
+                    console.log(response);
                     $('.loading-container').hide();
+                    if (response.status === 400) {
+                        $('.noroute').show();
+                        $('.mapview').hide();
+                        return;
+                    }
                     $('.searchview').hide();
                     $('.mapview').show();
                     $('.routename').html("Route from " + from + " to " + to);
+                    let = data = response.data;
                     data.forEach((location) => {
                         markers.push(location);
                     });
