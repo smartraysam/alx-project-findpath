@@ -1,14 +1,12 @@
-# Contributing to [findpath]
+# Contributing to findpath
 
-Welcome to [findpath]! We appreciate your interest in contributing. By contributing to this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
+Welcome to findpath! We appreciate your interest in contributing. By contributing to this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Getting Started
 
 1. Ensure you have a GitHub account.
 2. Fork the repository on GitHub.
 3. Clone the forked repository to your local machine.
-
-```bash
 
 git clone https://github.com/smartraysam/findpath.git
 cd findpath
@@ -24,10 +22,12 @@ Please follow these guidelines when contributing to the project:
 ## Pull Request Process
 Ensure your code adheres to the project's coding standards.
 Update the documentation to reflect any changes if needed.
-Make sure all tests pass.
+
+## Make sure all tests pass.
 Open a pull request (PR) against the main branch of the original repository.
 
 ## Issue Reporting
+
 Use the GitHub issue tracker to report bugs or suggest enhancements.
 Provide a clear and descriptive title.
 Include detailed steps to reproduce the issue.
