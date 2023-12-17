@@ -73,7 +73,7 @@ Explain how to generate or update documentation and where to find it.
 
 ## Community
 
-Connect with the [community](#) on [platform/link].
+Connect with the [community](#)
 
 ## License
 
