@@ -1,46 +1,82 @@
-# Contributing to findpath
+# Contributing to FindPath
 
-Welcome to findpath! We appreciate your interest in contributing. By contributing to this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
+Welcome to FindPath! We appreciate your interest in contributing.
 
-## Getting Started
+## Table of Contents
 
-1. Ensure you have a GitHub account.
-2. Fork the repository on GitHub.
-3. Clone the forked repository to your local machine.
+1. [Code of Conduct](#code-of-conduct)
+2. [How Can I Contribute?](#how-can-i-contribute)
+3. [Reporting Bugs](#reporting-bugs)
+4. [Feature Requests](#feature-requests)
+5. [Development Setup](#development-setup)
+6. [Submitting Changes](#submitting-changes)
+7. [Code Style](#code-style)
+8. [Testing](#testing)
+9. [Documentation](#documentation)
+10. [Community](#community)
+11. [License](#license)
 
-git clone https://github.com/smartraysam/findpath.git
-cd findpath
+## Code of Conduct
 
-1. Create a new branch for your feature or bug fix.
-git checkout -b feature-branch
+Please review our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
 
-Make your changes and test them thoroughly.
+## How Can I Contribute?
 
-## Contributing Guidelines
-Please follow these guidelines when contributing to the project:
+- Fork the repository and clone it locally.
+- Create a new branch for your contribution (`git checkout -b feature/your-feature`).
+- Make your changes and commit them with a descriptive commit message.
+- Push the branch to your fork (`git push origin feature/your-feature`).
+- Open a pull request with a clear title and description.
 
-## Pull Request Process
-Ensure your code adheres to the project's coding standards.
-Update the documentation to reflect any changes if needed.
+## Reporting Bugs
 
-## Make sure all tests pass.
-Open a pull request (PR) against the main branch of the original repository.
+If you find a bug, please open an issue with the following information:
 
-## Issue Reporting
+- A clear and descriptive title.
+- Steps to reproduce the issue.
+- Expected behavior.
+- Actual behavior.
+- Your operating system and its version.
+- Relevant screenshots or error messages.
 
-Use the GitHub issue tracker to report bugs or suggest enhancements.
-Provide a clear and descriptive title.
-Include detailed steps to reproduce the issue.
-Attach any relevant screenshots or error messages.
-Specify the version of the project where the issue occurred.
+## Feature Requests
 
+If you have a feature request, please open an issue with the following information:
+
+- A clear and descriptive title.
+- Detailed description of the feature.
+- Any relevant context or use cases.
+
+## Development Setup
+
+Include instructions on setting up the development environment, including dependencies, configuration files, and any other necessary details.
+
+## Submitting Changes
+
+Before submitting a pull request, make sure:
+
+- Your code follows our [Code Style](#code-style).
+- You've added tests if applicable.
+- The documentation is up-to-date.
+
+## Code Style
+
+Describe the coding style conventions contributors should follow.
+
+## Testing
+
+Provide information on how to run tests and any specific testing guidelines.
+
+## Documentation
+
+Explain how to generate or update documentation and where to find it.
+
+## Community
+
+Connect with the [community](#) on [platform/link].
 
 ## License
-By contributing to this project, you agree that your contributions will be licensed under the LICENSE file.
 
+By contributing to Findpath, you agree that your contributions will be licensed under the [LICENSE](LICENSE).
 
-## Contact
-If you have any questions or need further assistance, feel free to contact us at [contribution@findpath.com].
-
-Thank you for contributing to [findpath]!
-
+Happy contributing!
