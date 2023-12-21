@@ -10,6 +10,7 @@
 **An ALX Profolio project**
 
 Welcome to the FindPath project! FindPath is a navigation application designed to simplify your journeys, providing efficient routes and local exploration. This repository contains the source code and development setup instructions for local deployment.
+![image](https://github.com/smartraysam/findpath/assets/6819477/1e7e3e3b-6f31-4506-b876-8165f1456c5c)
 
 ## Stack Used
 
